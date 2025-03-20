@@ -80,6 +80,7 @@ function App() {
       2. What nodes are currently being considered
       3. What will likely happen in the next step
       Keep it concise and clear.
+      avoid using ** to induce bold,italics etc.
     `;
 
     try {
