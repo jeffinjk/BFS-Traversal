@@ -164,7 +164,7 @@ function App() {
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning && currentQueue.length > 0) {
-      interval = setInterval(performBFSStep, 1000);
+      interval = setInterval(performBFSStep, 3000);
     }
     return () => clearInterval(interval);
   }, [isRunning, currentQueue]);
