@@ -80,7 +80,6 @@ function App() {
       2. What nodes are currently being considered
       3. What will likely happen in the next step
       Keep it concise and clear.
-      Also avoid using bold,italic or underline.
     `;
 
     try {
@@ -179,23 +178,23 @@ function App() {
     }`}>
       <audio ref={audioRef} src={BACKGROUND_MUSIC_URL} />
       
-      <div className="max-w-6xl mx-auto p-8">
-        <div className={`rounded-lg shadow-lg p-6 ${
+      <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
+        <div className={`rounded-lg shadow-lg p-4 sm:p-6 ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         }`}>
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
             <div>
-              <h1 className={`text-3xl font-bold mb-2 ${
+              <h1 className={`text-2xl sm:text-3xl font-bold mb-2 ${
                 isDarkMode ? 'text-white' : 'text-gray-800'
               }`}>
                 BFS Visualization
               </h1>
-              <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
+              <p className={`text-sm sm:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Click anywhere to add nodes. Click two nodes to connect them.
                 {isRunning && !startNode && " Click a node to start BFS."}
               </p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 self-end sm:self-auto">
               <button
                 onClick={toggleDarkMode}
                 className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -213,7 +212,7 @@ function App() {
             </div>
           </div>
 
-          <div className="flex gap-4 mb-6">
+          <div className="flex flex-wrap gap-4 mb-6">
             <button
               onClick={() => setIsRunning(!isRunning)}
               className={`flex items-center gap-2 px-4 py-2 rounded-md ${
@@ -240,12 +239,12 @@ function App() {
             </button>
           </div>
 
-          <div className="grid grid-cols-[1fr,300px] gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-6">
             <div>
               <div
                 ref={canvasRef}
                 onClick={addNode}
-                className={`relative w-full h-[600px] border-2 rounded-lg mb-4 ${
+                className={`relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] border-2 rounded-lg mb-4 ${
                   isDarkMode ? 'border-gray-600 bg-gray-900' : 'border-gray-200 bg-white'
                 }`}
               >
@@ -287,7 +286,7 @@ function App() {
                         e.stopPropagation();
                         handleNodeClick(node.id);
                       }}
-                      className={`absolute w-12 h-12 -translate-x-6 -translate-y-6 rounded-full flex items-center justify-center cursor-pointer transition-colors ${
+                      className={`absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 -translate-x-4 sm:-translate-x-5 md:-translate-x-6 -translate-y-4 sm:-translate-y-5 md:-translate-y-6 rounded-full flex items-center justify-center cursor-pointer transition-colors text-sm sm:text-base md:text-lg ${
                         isVisited
                           ? 'bg-green-500 text-white'
                           : isInQueue
@@ -318,7 +317,7 @@ function App() {
                   }`}>
                     BFS Explanation
                   </h3>
-                  <p className="whitespace-pre-line">{explanation}</p>
+                  <p className="whitespace-pre-line text-sm sm:text-base">{explanation}</p>
                 </div>
               )}
             </div>
@@ -338,7 +337,7 @@ function App() {
                 </h3>
                 <div className="space-y-2">
                   {currentQueue.length === 0 ? (
-                    <p className={isDarkMode ? 'text-gray-400' : 'text-gray-500'}>
+                    <p className={`text-sm sm:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                       Queue is empty
                     </p>
                   ) : (
@@ -350,7 +349,7 @@ function App() {
                         }`}
                       >
                         <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                        <span>{getNodeLabel(nodeId)}</span>
+                        <span className="text-sm sm:text-base">{getNodeLabel(nodeId)}</span>
                       </div>
                     ))
                   )}
@@ -370,7 +369,7 @@ function App() {
                 </h3>
                 <div className="space-y-2">
                   {visitedNodes.length === 0 ? (
-                    <p className={isDarkMode ? 'text-gray-400' : 'text-gray-500'}>
+                    <p className={`text-sm sm:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                       No nodes visited yet
                     </p>
                   ) : (
@@ -382,7 +381,7 @@ function App() {
                         }`}
                       >
                         <div className="w-3 h-3 bg-green-500 rounded-full" />
-                        <span>{getNodeLabel(nodeId)}</span>
+                        <span className="text-sm sm:text-base">{getNodeLabel(nodeId)}</span>
                       </div>
                     ))
                   )}
@@ -391,26 +390,26 @@ function App() {
             </div>
           </div>
 
-          <div className={`mt-4 text-sm ${
+          <div className={`mt-4 text-xs sm:text-sm ${
             isDarkMode ? 'text-gray-400' : 'text-gray-600'
           }`}>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2">
-                <div className={`w-4 h-4 rounded-full ${
+                <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${
                   isDarkMode ? 'bg-gray-700' : 'bg-gray-200'
                 }`}></div>
                 <span>Unvisited</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full"></div>
                 <span>Visited</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-yellow-500 rounded-full"></div>
                 <span>In Queue</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-500 rounded-full"></div>
                 <span>Selected</span>
               </div>
             </div>
