@@ -79,6 +79,7 @@ function App() {
       1. What has happened so far in the traversal
       2. What nodes are currently being considered
       3. What will likely happen in the next step
+      4. How was BFS was perform and the step by step process
       Keep it concise and clear.
       avoid using ** to induce bold,italics etc.
     `;
